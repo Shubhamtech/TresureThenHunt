@@ -9,7 +9,7 @@ const Nav=()=>{
                 <li><Link to="/login">Login</Link></li>
 
                 <li><Link to="/logout">LogOut</Link></li>
-                <li><Link to="/clue1">clue1</Link></li>
+                {/* <li><Link to="/clue1">clue1</Link></li> */}
                 
                 
             </ul>
