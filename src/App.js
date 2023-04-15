@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+import React, { useEffect,useState } from "react";
 
+import Nav from "./Components/Nav";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Footer from "./Components/Footer";
+import SignUp from "./Components/signup/SignUp";
+import Login from "./Components/login/Login";
+import {auth} from "./firebase";
+import './App.css';
+import LogOut from "./Components/logout/Logout";
+import Clue1 from "./Components/Clue1/Clue1"
 function App() {
+  const [userName,setUserName]=useState("");   //const [isauthenticated,setisauthenticated]=usestate("")
+  useEffect(()=>{
+    //to know whether the user currently logedin or not
+    auth.onAuthStateChanged((user)=>{
+      if(user){
+        setUserName(user.displayName);
+      }else{
+        setUserName(""); //userissigned out
+      }
+      console.log(user);
+    });
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    {/* <img src="./tresure2.jpg"  alt="logo" /> */}
+    
+    <BrowserRouter>
+       <Nav />
+      <h1>TresureThenHunt</h1>
+      {/* <div className="section">
+        <h1>TresureThenHunt</h1>
+        <img src="./tresure2.jpg"  alt="logo" />
+      </div> */}
+      
+      <Routes>
+        <Route path="/logout" element={<LogOut />}/>
+        <Route path="/clue1" element={<Clue1 />}/>
+        
+        <Route path="/signup" element={<SignUp />}/>
+        <Route path="/login" element={<Login />}/>
+      </Routes>
+      
+    </BrowserRouter>
+    {/* <img src="./tresure2.jpg"  alt="logo" /> */}
+     <div className="section">
+     
+     </div> 
+    <Footer /> 
     </div>
   );
 }
