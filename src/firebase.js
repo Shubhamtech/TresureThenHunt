@@ -3,8 +3,8 @@ import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: `${process.env.API_KEY}`,
-  authDomain: `${process.env.DOMAIN}`,
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: "tresurehunt-d5dd1",
   storageBucket: "tresurehunt-d5dd1.appspot.com",
   messagingSenderId: "341344372424",

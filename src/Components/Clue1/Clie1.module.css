@@ -26,3 +26,14 @@ button {
     width: 10%; 
     position: center;
   }
+  h3{
+    display: inline;
+    
+  }
+
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    gap:2.5rem;
+  }
+  

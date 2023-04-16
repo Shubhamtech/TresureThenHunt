@@ -5,7 +5,7 @@ const Nav=()=>{
         <div>
             <ul className="nav-ul">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/signup">SignUp/Register</Link></li>
+                <li><Link to="/signup">Register</Link></li>
                 <li><Link to="/login">Login</Link></li>
 
                 <li><Link to="/logout">LogOut</Link></li>

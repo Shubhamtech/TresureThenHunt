@@ -1,7 +1,10 @@
 import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {signInWithEmailAndPassword} from "firebase/auth";
+import {getDatabase,set,ref} from 'firebase/database';
+import ProtectedComponent from "../ProtectedComponent";
 import {auth} from "../../firebase";
+import {app} from "../../firebase";
 import styles from './Login.module.css'
 
 const Login=()=>{
@@ -10,6 +13,7 @@ const Login=()=>{
     // const [name,setName]=useState("");
     // const [email,setEmail]=useState("");
     // const [password,setPassword]=useState("");
+   
     const [values, setValues] = useState({
        
         email: "",
@@ -17,20 +21,33 @@ const Login=()=>{
       });
       const [errorMsg,setError]=useState("");
       const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+     const [userId,setUserId]=useState("");
+
      const collectData=()=>{     //to handdel submissions
         if( !values.email || !values.pass){
             setError("fill all fields");
             return;
         }
-        setError("");
+         setError("");
          //console.log(values);
          setSubmitButtonDisabled(true);
+         
+         const database=getDatabase(app);
          signInWithEmailAndPassword(auth, values.email, values.pass).then(
             async(res)=>{
               setSubmitButtonDisabled(false);
-              //console.log(res);
-              
-               navigate("/clue1");
+              //console.log(res.user.displayName);
+             
+              //setUserId(res.user.uid);
+              console.log(userId);
+              // set(ref(database, 'users/' + userId), {
+              //   username: res.user.dispalyName,
+              //   email: email,
+              //   currlevel :  ,
+               //  finalstatus:
+              // });
+               navigate("/ProtectedComponent");
+              // return (<ProtectedComponent  />)
            }
          ).catch((err)=>{
             setSubmitButtonDisabled(false);
@@ -56,7 +73,7 @@ const Login=()=>{
             <div className={styles.buttom}>
              <b className={styles.error}>{errorMsg}</b>
         
-             <button onClick={collectData} disabled={submitButtonDisabled} className={styles.button}>Login In</button>
+             <button onClick={collectData} disabled={submitButtonDisabled} className={styles.button}>Login</button>
             </div>
           </div> 
           </div>

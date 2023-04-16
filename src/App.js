@@ -9,7 +9,8 @@ import Login from "./Components/login/Login";
 import {auth} from "./firebase";
 import './App.css';
 import LogOut from "./Components/logout/Logout";
-import Clue1 from "./Components/Clue1/Clue1"
+// import Clue1 from "./Components/Clue1/Clue1";
+import ProtectedComponent from "./Components/ProtectedComponent";
 function App() {
   const [userName,setUserName]=useState("");   //const [isauthenticated,setisauthenticated]=usestate("")
   useEffect(()=>{
@@ -38,10 +39,11 @@ function App() {
       
       <Routes>
         <Route path="/logout" element={<LogOut />}/>
-        <Route path="/clue1" element={<Clue1 />}/>
+        {/* <Route path="/clue1" element={<Clue1 />}/> */}
         
         <Route path="/signup" element={<SignUp />}/>
         <Route path="/login" element={<Login />}/>
+         <Route path="/ProtectedComponent" element={<ProtectedComponent />}/> 
       </Routes>
       
     </BrowserRouter>
